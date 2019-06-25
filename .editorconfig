@@ -1,4 +1,4 @@
-oot = true
+root = true
 
 [*]
 charset = utf-8
@@ -16,4 +16,5 @@ indent_size = 2
 
 [*.{js,html,blade.php,css,scss}]
 indent_style = space
-indent_size = 2
+indent_size = 4
+
