@@ -2,5 +2,5 @@
 @section('title', '登录')
 
 @section('content')
-login page
+    login page
 @endsection
