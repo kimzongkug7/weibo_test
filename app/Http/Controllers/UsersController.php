@@ -19,6 +19,7 @@ class UsersController extends Controller
     {
         if (\request('test') == 1) {
             dump($user->toArray());
+            exit;
         }
 
         return view('users/show', compact('user'));
@@ -33,12 +34,22 @@ class UsersController extends Controller
     // 执行注册
     public function store(Request $request)
     {
+        // 用户输入验证
         $this->validate($request, [
             'name' => 'required|max:50',
             'email' => 'required|email|unique:users|max:255',
             'password' => 'required|confirmed|min:6',
         ]);
-        return;
+        // 创建用户到mysql
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->email),
+        ]);
+        // 下次请求，session()->flash中的信息只存在一次
+        session()->flash('success', '欢迎，您将在这里开启一段新的旅程~');
+        // 跳转到用户信息页
+        return redirect(route('users.show', [$user->id]));
     }
 
 }
