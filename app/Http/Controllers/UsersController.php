@@ -7,18 +7,14 @@ use App\Models\User;
 
 class UsersController extends Controller
 {
-    // 用户注册
-    public function create()
-    {
-        return view('users/create');
-    }
 
-    // 用户登录
+    // 登录页面
     public function login()
     {
         return view('users/login');
     }
 
+    // 用户信息页面
     public function show(User $user)
     {
         if (\request('test') == 1) {
@@ -27,4 +23,17 @@ class UsersController extends Controller
 
         return view('users/show', compact('user'));
     }
+
+    // 注册页面
+    public function create()
+    {
+        return view('users/create');
+    }
+
+    // 执行注册
+    public function store()
+    {
+        dump(\request());
+    }
+
 }
